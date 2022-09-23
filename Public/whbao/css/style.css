@@ -1,0 +1,659 @@
+﻿body {
+	background-color: #0D7DD8;
+}
+
+header {
+	width: 100%;
+	height: 0.8rem;
+	position: relative;
+}
+
+header button.back {
+	background-color: transparent;
+	position: absolute;
+	left: 0.26rem;
+	top: -0.2rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	border: none;
+	padding: 0 0.4rem 0.8rem 0;
+}
+
+header h2 {
+	color: #fff;
+	font-size: 0.34rem;
+	text-align: center;
+	line-height: 0.8rem;
+	font-weight: normal;
+}
+
+section.sweepCode .content2 {
+	display: none;
+}
+
+section.sweepCode[data-type="normal"] .failure,
+section.sweepCode[data-type="normal"] .success,
+section.sweepCode[data-type="normal"] #cardCloneWrap,
+section.sweepCode[data-type="normal"] footer button.done,
+section.sweepCode[data-type="normal"] p.txt {
+	display: none;
+}
+
+section.sweepCode[data-type="failure"] .success,
+section.sweepCode[data-type="failure"] #cardCloneWrap,
+section.sweepCode[data-type="failure"] footer button.done,
+section.sweepCode[data-type="failure"] p.courseBtn {
+	display: none;
+}
+
+section.sweepCode[data-type="failure"] footer button,
+section.sweepCode[data-type="failure"] footer a {
+	color: rgba(13, 125, 216, 0.3);
+}
+
+section.cardCode .content2 {
+	display: none;
+}
+
+section.cardCode .moneyWrap {
+	margin: 0.1rem auto 0.1rem;
+}
+
+section.cardCode[data-type="normal"] .failure,
+section.cardCode[data-type="normal"] .success,
+section.cardCode[data-type="normal"] #codeWrap,
+section.cardCode[data-type="normal"] footer button.done,
+section.cardCode[data-type="normal"] p.txt {
+	display: none;
+}
+
+section.cardCode[data-type="failure"] .success,
+section.cardCode[data-type="failure"] #codeWrap,
+section.cardCode[data-type="failure"] footer button.done,
+section.cardCode[data-type="failure"] p.txt {
+	display: none;
+}
+
+section.cardCode[data-type="failure"] footer button,
+section.cardCode[data-type="failure"] footer a {
+	color: rgba(13, 125, 216, 0.3);
+}
+
+section.cardCode[data-type="failure"] .moneyWrap h1 {
+	display: none;
+}
+
+section.cardCode[data-type="failure"] .moneyWrap h2 {
+	display: block;
+}
+
+section.success .failure,
+section.success .code,
+section.success h5,
+section.success h6,
+section.success footer p,
+section.success footer a.goAlipay,
+section.success p.courseBtn {
+	display: none;
+}
+
+section.copyLink .content2 img {
+	width: 6rem;
+	margin: 0.8rem auto 0.2rem;
+	display: block;
+}
+
+section.copyLink .content2 .copyWrap {
+	font-size: 0.32rem;
+	padding-bottom: 0.3rem;
+	color: #fff;
+	text-align: center;
+}
+
+section.copyLink .content2 .copyWrap textarea {
+	margin: 0.1rem auto 0;
+	display: block;
+	width: 5.9rem;
+	color: #000;
+	border-color: #E8E8E8;
+	padding: 0.08rem;
+	border-radius: 0.1rem;
+}
+
+section.copyLink .content2 button,
+section.copyLink .content2 a {
+	width: 5.9rem;
+	height: 0.92rem;
+	line-height: 0.92rem;
+	display: block;
+	color: #0D7DD8;
+	font-size: 0.31rem;
+	text-align: center;
+	border-radius: 0.16rem;
+	border: none;
+	margin-bottom: 0.16rem;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+section.copyLink .content {
+	display: none;
+}
+
+section.copyLink .failure,
+section.copyLink .code,
+section.copyLink h5,
+section.copyLink h6,
+section.copyLink footer p,
+section.copyLink footer a.goAlipay,
+section.copyLink p.courseBtn {
+	display: none;
+}
+
+section.copyLink .moneyWrap {
+	margin: 0.68rem auto 0.54rem;
+}
+
+section.copyLink[data-type="normal"] .failure,
+section.copyLink[data-type="normal"] .success,
+section.copyLink[data-type="normal"] #codeWrap,
+section.copyLink[data-type="normal"] footer button.done,
+section.copyLink[data-type="normal"] p.txt {
+	display: none;
+}
+
+section.copyLink[data-type="failure"] .success,
+section.copyLink[data-type="failure"] #codeWrap,
+section.copyLink[data-type="failure"] footer button.done,
+section.copyLink[data-type="failure"] p.txt {
+	display: none;
+}
+
+section.copyLink[data-type="failure"] footer button,
+section.copyLink[data-type="failure"] footer a {
+	color: rgba(13, 125, 216, 0.3);
+}
+
+section.copyLink[data-type="failure"] .moneyWrap h1 {
+	display: none;
+}
+
+section.copyLink[data-type="failure"] .moneyWrap h2 {
+	display: block;
+}
+
+section .content {
+	width: 5.8rem;
+	padding: 0.5rem 0.4rem 0.64rem 0.4rem;
+	background-color: #fff;
+	border-radius: 0.14rem;
+	margin: 0.34rem auto 0.26rem;
+}
+
+section .content h6 {
+	font-size: 0.28rem;
+	font-weight: normal;
+	text-align: center;
+	color: red;
+	font-weight: bold;
+}
+
+section .content #codeWrap {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 0.34rem;
+	margin-bottom: 0.34rem;
+	position: relative;
+}
+
+section .content #codeWrap .code {
+	width: 2.85rem;
+	height: 2.85rem;
+}
+
+section .content #codeWrap .failure {
+	width: 2.85rem;
+	height: 2.85rem;
+	background-color: rgba(255, 255, 255, 0.3);
+	position: absolute;
+}
+
+section .content #codeWrap .failure span {
+	width: 2.44rem;
+	height: 0.6rem;
+	display: block;
+	background-color: #fff;
+	margin: 1.1rem auto 0;
+	color: #666666;
+	font-size: 0.31rem;
+	line-height: 0.6rem;
+	border-radius: 0.05rem;
+	text-align: center;
+}
+
+section .content #codeWrap .success {
+	width: 100%;
+	color: #0D7DD8;
+	font-size: 0.38rem;
+	text-align: center;
+}
+
+section .content #codeWrap .success img {
+	display: block;
+	margin: 0 auto 0.3rem;
+}
+
+section .content #cardCloneWrap ul li {
+	line-height: 24px;
+	height: 24px;
+	padding: 0.1rem 0;
+	border-bottom: 1px solid #999999;
+	font-size: 0.14rem;
+	height: 0.88rem;
+	line-height: 0.88rem;
+	color: #393738;
+	font-size: 0.24rem;
+}
+
+section .content #cardCloneWrap ul li button {
+	/* display: inline-block;
+	color: #0D7DD8;
+	font-size: 0.2rem;
+	float: right; */
+	border: none;
+	/* background-color: transparent;
+	line-height: 0.8rem; */
+}
+
+section .content #cardCloneWrap ul li p {
+	font-weight: 500;
+	display: inline-block;
+	font-size: 0.2rem;
+	float: right;
+	margin-right: 20px;
+}
+
+section .content .moneyWrap {
+	text-align: center;
+	font-size: 0.24rem;
+	line-height: 0.4rem;
+	color: #333;
+}
+
+section .content .moneyWrap h1 {
+	text-align: center;
+	font-size: 0.56rem;
+	line-height: 0.56rem;
+	color: #333;
+}
+
+section .content .moneyWrap h2 {
+	display: none;
+	color: #666666;
+	font-size: 0.38rem;
+	text-decoration: line-through;
+	font-weight: 500;
+	letter-spacing: 5px;
+}
+
+footer {
+	width: 100%;
+}
+
+footer button,
+footer a {
+	width: 5.9rem;
+	height: 0.92rem;
+	line-height: 0.92rem;
+	display: block;
+	color: #0D7DD8;
+	font-size: 0.31rem;
+	text-align: center;
+	border-radius: 0.16rem;
+	border: none;
+	margin-bottom: 0.16rem;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+footer p {
+	text-align: center;
+	font-size: 0.24rem;
+	color: #fff;
+	margin-top: 0.16rem;
+}
+
+footer p.courseBtn {
+	text-decoration: underline;
+}
+
+div.switchBtnModal {
+	margin-top: 0.34rem;
+}
+
+div.switchBtnModal button {
+	width: 33%;
+	float: left;
+	font-size: 0.24rem;
+	line-height: 0.24rem;
+	text-align: center;
+	color: #fff;
+	opacity: 0.7;
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+div.switchBtnModal button.active {
+	opacity: 1;
+}
+
+div.switchBtnModal button img {
+	display: block;
+	margin: 0 auto 0.18rem;
+}
+
+div.modal {
+	z-index: 10;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+div.modal .modal-dialog {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.modal .modal-dialog .modal-content {
+	background-color: #fff;
+	border-radius: 14px;
+	position: relative;
+	transform: translateY(-0.32rem);
+}
+
+div.modal .modal-dialog .modal-content .modal-header {
+	text-align: center;
+}
+
+div.modal .modal-dialog .modal-content .modal-header h3 {
+	font-size: 0.34rem;
+	line-height: 0.48rem;
+	color: #333333;
+}
+
+div.modal .modal-dialog .modal-content .modal-header p {
+	font-size: 0.24rem;
+	line-height: 0.34rem;
+	color: #333;
+}
+
+div.modal .modal-dialog .modal-content .modal-body h3 {
+	text-align: center;
+	font-size: 0.34rem;
+	line-height: 0.48rem;
+	color: #333333;
+}
+
+div.modal .modal-dialog .modal-content .modal-body p {
+	text-align: center;
+	font-size: 0.24rem;
+	line-height: 0.34rem;
+	color: #333;
+}
+
+div.modal .modal-dialog .modal-content .modal-footer {
+	text-align: center;
+}
+
+div.modal.selectRechage {
+	margin-top: 0;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content {
+	padding: 0.3rem 0 0.5rem 0;
+	width: 5.88rem;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body {
+	font-size: 0.3rem;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body ul {
+	padding: 0 0.34rem;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body ul li {
+	padding: 0 0.28rem 0 0.18rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	border-bottom: 1px solid #999999;
+	position: relative;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body ul li.active:after {
+	border-color: #0D7DD8;
+	padding: 2px;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body ul li.active:before {
+	background-color: #0D7DD8;
+	width: 0.2rem;
+	height: 0.2rem;
+	display: block;
+	position: absolute;
+	top: 0.32rem;
+	right: 0.32rem;
+	content: '';
+	border-radius: 0.5rem;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body ul li img {
+	width: 0.34rem;
+	height: 0.34rem;
+	margin-right: 0.4rem;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-body ul li:after {
+	content: '';
+	display: inline-block;
+	width: 0.24rem;
+	height: 0.24rem;
+	border: 1px solid #eaeaea;
+	float: right;
+	border-radius: 0.5rem;
+	margin-top: 0.28rem;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-footer {
+	position: relative;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-footer button.btn {
+	width: 3.7rem;
+	height: 0.74rem;
+	line-height: 0.74rem;
+	border-radius: 0.14rem;
+	font-size: 0.28rem;
+	text-align: center;
+	background-color: #0D7DD8;
+	color: #fff;
+}
+
+div.modal.selectRechage .modal-dialog .modal-content .modal-footer button.close {
+	position: absolute;
+	bottom: -1.6rem;
+	left: 50%;
+	transform: translateX(-0.34rem);
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+div.modal.coursePay {
+	margin-top: 0;
+}
+
+div.modal.coursePay .modal-dialog .modal-content {
+	padding: 0.3rem 0 0.5rem 0;
+	width: 5.88rem;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-body {
+	font-size: 0.3rem;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-body .swiper-container {
+	padding-bottom: 0.2rem;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-body .swiper-container div.swiper-wrapper .swiper-slide img {
+	border: 1px dashed #888888;
+	width: 4.48rem;
+	height: 7.66rem;
+	margin: 0 auto;
+	display: block;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-body .swiper-container .swiper-pagination {
+	bottom: -0.1rem;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-body .swiper-container .swiper-pagination .swiper-pagination-bullet {
+	width: 0.1rem;
+	height: 0.1rem;
+	margin-right: 0.26rem;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-footer {
+	height: 0;
+}
+
+div.modal.coursePay .modal-dialog .modal-content .modal-footer .close {
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.botton {
+	text-align: center;
+	background: #0D7DD8;
+	color: #fff;
+	border-radius: 0.05rem;
+	line-height: 0.7rem;
+	height: 0.7rem;
+	margin: 0 auto 0.9rem;
+	font-size: 0.3rem;
+}
+
+.button {
+	text-align: center;
+	background: #0D7DD8;
+	color: #fff;
+	border-radius: 0.05rem;
+	line-height: 0.5rem;
+	height: 0.5rem;
+	font-size: .2rem;
+	float: right;
+	padding: 0 10px;
+	margin-top: .2rem;
+}
+
+.button_small {
+
+	background: #0D7DD8;
+	color: #fff;
+	border-radius: 0.05rem;
+	height: .2rem;
+	margin-left: .1rem;
+	width: .6rem;
+	font-size: .1rem;
+}
+
+.title {
+	margin-top: 0.34rem;
+	display: none;
+}
+
+.title div {
+	font-size: 0.4rem;
+	color: #fff;
+	width: 55%;
+	line-height: 0.8rem;
+	padding-left: 1.2rem;
+	margin: auto;
+}
+
+.tips li {
+	font-size: 0.24rem;
+	line-height: 0.24rem;
+	font-weight: 600;
+	color: #f00;
+	margin: 0.2rem;
+}
+
+.tips {
+	border: 2px solid #0D7DD8;
+	border-radius: 30px;
+	padding: 0.3rem 0.1rem 0.1rem 0.1rem;
+	background: rgba(13, 125, 216, 0.3);
+}
+
+.content h5 {
+	background: #0D7DD8;
+	color: #fff;
+	width: 60%;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	border-radius: 10px;
+	position: absolute;
+	top: -20px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-size: 0.24rem;
+	text-align: center;
+}
+
+.content>p {
+	font-size: 0.24rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #323232;
+	text-align: center;
+	line-height: 0.36rem;
+}
+
+.content p strong {
+	color: #f00;
+}
+
+.bank {
+	display: inline-block;
+	text-align: center;
+	background: #0D7DD8;
+	color: #fff;
+	border-radius: 0.05rem;
+	line-height: 0.7rem;
+	height: 0.7rem;
+	width: 1.4rem;
+	font-size: 0.3rem;
+	margin: 0 0.3rem 0.2rem 0;
+	border: none;
+}
+
+.layui-layer-btn a {
+	font-size: 12px !important;
+}
+
+.layui-layer-btn {
+	font-size: 0;
+}

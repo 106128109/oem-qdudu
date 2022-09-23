@@ -1,0 +1,499 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0073)https://www.huihpay.com/cashier/wxredbagpay?tradeno=X02637672206901622070 -->
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!---->
+	
+
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<title>微信群红包付款</title>
+	<link href="/wechatgroup3/base.css" rel="stylesheet">
+	<link href="/wechatgroup3/layer.css" rel="stylesheet">
+	<link href="/wechatgroup3/site.css" rel="stylesheet">
+	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.fullbg {
+			background: rgba(0, 0, 0, .9);
+			display: none;
+			height: 100vh;
+			left: 0;
+			opacity: 0;
+			position: fixed;
+			top: 0;
+			transition: opacity .5s;
+			width: 100vw;
+			z-index: 9999;
+		}
+
+		.ani {
+			opacity: 1;
+		}
+
+		.ani .ls-pop {
+			transform: translate(-50%, -50%);
+		}
+
+		.ls-pop {
+			background: #fff;
+			border-radius: 10px 10px 10px 10px;
+			left: 50%;
+			position: fixed;
+			top: 50%;
+			transform: translate(-50%, -100%);
+			transition: all .5s;
+			width: 80%;
+		}
+
+		.showPop {
+			display: block;
+		}
+
+		.ls-name {
+			font-size: 18px;
+			font-weight: normal;
+			padding: 20px 30px 20px 30px;
+			text-align: left;
+		}
+
+
+		.ls-name2 {
+			color: red;
+			font-size: 12px;
+			font-weight: normal;
+			padding: 1px 0 1px 1px;
+			text-align: left;
+		}
+
+		.ls-input {
+			border: 1px solid #ccc;
+			display: block;
+			font-size: 24px;
+			height: 40px;
+			margin: 40px auto auto auto;
+			padding: 0 10px;
+			width: 80%;
+			text-align: center;
+		}
+
+		.ls-btn {
+			background: #409eff;
+			border-radius: 6px;
+			color: #fff;
+			height: 40px;
+			line-height: 40px;
+			margin: 20px auto auto auto;
+			text-align: center;
+			width: 80%;
+		}
+
+		div {
+			text-align: center;
+		}
+
+		.container {
+			background: #ffffff;
+			height: 100%;
+			margin: 0 auto;
+			max-width: 640px;
+			min-height: 100%;
+			min-width: 300px;
+			padding-left: 1px;
+			padding-right: 1px;
+		}
+
+		h1 {
+			font-family: "微软雅黑";
+			font-size: 15px;
+			letter-spacing: 2px;
+			margin: 5px 0;
+			padding-bottom: 2px;
+		}
+
+		.zzdiv {
+			background-color: #0C0C0C;
+			color: #FFF;
+			display: none;
+			font-size: 18px;
+			height: 100%;
+			line-height: 500px;
+			opacity: 0.8;
+			position: absolute;
+			width: 100%;
+		}
+
+		.content {
+			background: #FFF;
+			border-radius: 5px;
+			width: 98%;
+		}
+
+		.mod-title {
+			background: #fff;
+			border-bottom: 1px solid #ddd;
+			height: 60px;
+			line-height: 50px;
+			padding: 3px;
+			text-align: center;
+		}
+
+		.mod-ct .amount {
+			font-size: 28px;
+			margin: 10px 0px 3px 0px;
+		}
+
+		.ico_log {
+			display: inline-block;
+			height: 60px;
+			margin-right: 0;
+			vertical-align: middle;
+		}
+
+		.ico_log img {
+			height: 100%;
+		}
+
+		.mod-ct {
+			border: 0px solid #e5e5e5;
+			border-top: none;
+			color: #333;
+			margin: 0 auto;
+			margin-bottom: 15px;
+			max-width: 640px;
+			min-width: 300px;
+			padding-bottom: 10px;
+			text-align: center;
+		}
+
+		.mod-ct .order {
+			font-size: 20px;
+			padding-top: 10px;
+		}
+
+		.mod-ct .tip {
+			border-top: 1px dashed #e5e5e5;
+			height: 100%;
+			padding: 10px 0;
+			position: relative;
+		}
+
+		.mod-ct .tip .ico-scan {
+			background: url(/images/wechat-pay.png) 0 0 no-repeat;
+			display: inline-block;
+			height: 55px;
+			vertical-align: middle;
+			width: 56px;
+		}
+
+		.top_title img {
+			height: 50px;
+			margin-top: 15px;
+		}
+
+		.tishi1 h2 {
+			color: red;
+		}
+
+		.tishi1 p {
+			margin: 1px 0px;
+			text-align: left;
+		}
+
+		.clearcss {
+			height: 60px;
+			line-height: 60px;
+		}
+
+		.clearcss:after {
+			clear: both;
+			content: ' '
+		}
+
+		.bottom_info img {
+			height: 50px;
+			margin-top: 25px;
+		}
+
+		.bottom_info p {
+			box-sizing: border-box;
+			height: 10px;
+			line-height: 10px;
+			padding-top: 17px;
+		}
+
+		table.gridtable {
+			border-collapse: collapse;
+			border-color: #e6e6e6;
+			border-width: 0px;
+			color: #333333;
+			font-family: verdana, arial, sans-serif;
+			font-size: 11px;
+			width: 100%;
+		}
+
+		table.gridtable th {
+			background-color: #dedede;
+			border-color: #e6e6e6;
+			border-style: solid;
+			border-width: 0px;
+			padding: 8px;
+		}
+
+		table.gridtable td {
+			background-color: #ffffff;
+			border-color: #e6e6e6;
+			border-style: solid;
+			border-width: 0px;
+			font-size: 14px;
+			min-width: 50px;
+			padding: 8px;
+		}
+
+		.right {
+			text-align: right;
+		}
+
+		td a {
+			/*background: #FFB800;*/
+			color: #FFF;
+			padding: 3px 10px;
+		}
+
+		.layui-m-layercont {
+			padding: 20px !important;
+		}
+
+		.optSept {}
+
+		.optSept div {
+			box-sizing: border-box;
+			float: left;
+			padding-left: 5px;
+			padding-right: 5px;
+			width: 33.33%;
+		}
+
+		.optSept img {
+			width: 100%;
+		}
+
+		.optSept:after {
+			clear: both;
+			content: ' '
+		}
+	</style>
+	<title>支付</title>
+	<script src="/wechatgroup3/jquery.min.js"></script>
+	<style type="text/css">
+		@font-face {
+			font-family: "element-icons";
+			src: url('chrome-extension://moombeodfomdpjnpocobemoiaemednkg/fonts/element-icons.woff') format('woff'), url('chrome-extension://moombeodfomdpjnpocobemoiaemednkg/fonts/element-icons.ttf ') format('truetype');
+			/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		}
+	</style>
+	<link href="/wechatgroup3/layer(1).css" type="text/css" rel="styleSheet" id="layermcss">
+	<style type="text/css">
+		@font-face {
+			font-family: "element-icons";
+			src: url('chrome-extension://moombeodfomdpjnpocobemoiaemednkg/fonts/element-icons.woff') format('woff'),
+				url('chrome-extension://moombeodfomdpjnpocobemoiaemednkg/fonts/element-icons.ttf ') format('truetype');
+			/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		}
+	</style>
+</head>
+
+<body>
+		<div class="zzdiv" id="paiddiv">订单支付成功，请勿重复支付</div>
+		<div class="zzdiv" id="zzdiv">订单过期，请重新下单</div>
+		<div class="container">
+			<div class="flex flex-column text-white padding-20"
+			style=" background: linear-gradient(45deg, #19ad19, #6fcc6f); ">
+
+				<div class="flex flex-row flex-grow-1">
+					<div class="flex-grow-0 text-left"><img src="/Public/qqhbao/waiting.png" style="width:30px;height:30px">
+					</div>
+					<div class="flex-grow-1 text-left" style=" height: 36px; line-height: 36px; margin-left:10px;">请付款</div>
+					<div class="flex-grow-1 text-right" style=" height: 36px; line-height: 36px; ">付款倒计时: <span
+						id="min_c">05</span>:<span id="second_c">00</span></div>
+				</div>
+				<div class="flex-grow-1 align-items-start text-left" style=" height: 20px; line-height: 34px; ">
+					订单号: 1480795454978527232
+				</div>
+			</div>
+			<div class="padding-5" style="color: #03a9f4; font-size: 150%; font-weight: 700; ">请按照下列充值步骤</div>
+			<div class="mod-ct" style="background-color: gainsboro;">
+				<div class="order"></div>
+				<p style="color: orangered; font-size: 200%; font-weight: bold; margin: 3px 0px;">￥
+					200.00</p>
+				<div class="padding-20 m-l-20 m-r-20 padding-15" style="color:#37b0e9; background-color: white;">
+					<p
+					style="line-height: 120%; text-align: center; font-size: 110%; font-weight: 700; padding: 10px 0 10px 0; border-bottom: 1px dotted">
+						进群发“<font style="color: red;">拼手气红包</font>”！！！
+					</p>
+					<p
+					style="line-height: 120%; text-align: center; font-size: 110%; font-weight: 700; padding: 10px 0 10px 0; border-bottom: 1px dotted #a0a0a0;">
+						1 <font style="color: red;">每个群二维码拼手气红包只能在订单有效时间内进群发包支付，超时支付或者重复支付造成损失自己负责</font>
+					</p>
+					<p
+					style="line-height: 120%; text-align: center; font-size: 110%; font-weight: 700; padding: 10px 0 10px 0; border-bottom: 1px dotted #a0a0a0;">
+						2 <font style="color: red;">进群后请等待群主关闭群验证后说“发”才能发包，列表第一个是群主，记得是群主说发才能发。群主！群主！群主！</font>
+					</p>
+					<p
+					style="line-height: 120%; text-align: center; font-size: 110%; font-weight: 700; padding: 10px 0 10px 0; border-bottom: 1px dotted #a0a0a0;">
+						3 群主说发再发，会员进群发“<font style="color: red;">拼手气红包</font>”,不要发专属和普通红包，禁止重复支付，重复支付不到账，不退不补！
+					</p>
+					<p
+					style="line-height: 120%; text-align: center; font-size: 110%; font-weight: 700; padding: 10px 0 10px 0; border-bottom: 1px dotted #a0a0a0;">
+						4 进群后发送“订单号”，发送微信红包100%成功
+					</p>
+					<p
+					style="line-height: 120%; text-align: center; font-size: 125%; font-weight: 700; padding: 10px 0 10px 0; color:rgba(0, 0, 0, .9)">
+						截图保存<span style="color:red">微信群</span>二维码<br>打开微信<span style="color:red">扫码进群</span>付款
+						<br>
+						请按照教程发<span style="color:red">拼手气红包</span>付款
+						<br>
+						订单号:1480795454978527232 <button type="button" id="btn_checkcode" data-clipboard-text="1480795454978527232"
+						class="layui-btn layui-btn-normal">复制</button>
+					</p>
+					<p style="margin-top:20px;">
+					</p>
+					<div class="flex flex-row" style=" display: none;">
+						<div class="flex-grow-1"><a href="/wechatgroup3/1631533709265.jpg" target="_blank" download=""
+							class="bg-info btn-block m-l-20 m-r-20"
+							style="border-radius: 10px;display: inline-block;width: 80%;margin: 20px;height: 36px;color: #fff; line-height:36px;">保存微信码</a>
+						</div>
+						<div class="flex-grow-1"><button class="bg-success btn-block m-l-20 m-r-20"
+							style="border-radius: 10px;display: inline-block;width: 80%;margin: 20px;height: 36px;color: #fff;"
+							onclick="window.location = &#39;weixin://&#39;; return false;">打开微信</button></div>
+					</div>
+					<p></p>
+
+					<div class="content">
+						<div style="width:260px;heigth:260px;margin:0 auto;" id="qrcode"></div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<input type="hidden" id="OrderNo" value="1480795454978527232">
+				<input type="hidden" id="State" value="WaitPay">
+				<input type="hidden" id="State" value="1">
+				<input type="hidden" id="exTime" value="285">
+				<div id="qrcode" style="display: none" class="center">
+				</div>
+			</div>
+		</div>
+		<script src="/wechatgroup3/layer.js"></script>
+		<script src="/js/qrcode.js"></script>
+		<script src="/wechatgroup/clipboard.min.js"></script>
+		<script>
+
+
+			new QRCode('qrcode', {
+				text: 'https://weixin.qq.com/g/AwYAAHQCXAcKJKZEtWC2DwGvcHtpmE4B8_NPiynjFcStZ0d_PKYmjsCw1ub9sqqu',
+				width: 260,
+				height: 260,
+				colorDark: '#000000',
+				colorLight: '#ffffff',
+				correctLevel: QRCode.CorrectLevel.H
+			});
+
+			$(function () {
+				var clipboard = new ClipboardJS("#btn_checkcode");
+				clipboard.on('success', function (e) {
+					alert('复制成功');
+				});
+			});
+			var timer2, timer3, timer1, wait;
+			var returnurl = $("#ReturnUrl").val();
+			var state = $("#State").val();
+			var orderNo = $("#OrderNo").val();
+			var payerName = $("#PayerName").val();
+
+			$(function () {
+				getQrcode();
+			});
+
+
+			function getQrcode() {
+				wait = $("#exTime").val();
+				timer3 = setInterval(time, 1000);
+				if (state != 2)
+					timer2 = setInterval(getnewstatus, 3000);
+			}
+
+			function time() {
+				if (state === 2) {
+					$("#paiddiv").show();
+					window.clearInterval(timer2);
+					window.clearInterval(timer3);
+				} else if (wait <= 0) {
+					$("#zzdiv").show();
+					$("#qrcode").hide();
+					$("#zfb").attr("src", "/images/gqewm.png");
+					window.clearInterval(timer2);
+					window.clearInterval(timer3);
+				} else {
+					wait--;
+				}
+
+				var min = parseInt(wait / 60);
+				var second = wait % 60;
+				if (wait >= 0) {
+					$("#min_c").text("0" + min);
+					$("#second_c").text(second > 9 ? second : "0" + second);
+				} else {
+					$("#min_c").text("00");
+					$("#second_c").text("00");
+				}
+
+			}
+
+			function getnewstatus() {
+				$.get('http://202.79.173.125:3020/api/QueryState?tradeNo=1480795454978527232',
+					function (result) {
+						if (result.code === 0) {
+							if (!returnurl != '')
+								window.location.href = returnurl;
+							else {
+								$("#paiddiv").show();
+								window.clearInterval(timer2);
+								window.clearInterval(timer3);
+							}
+						}
+					},
+					"json");
+			}
+
+
+
+			function getDom(id) {
+				return document.getElementById(id);
+			}
+
+			var tutorials = false;
+			$("#tutorials").click(function () {
+				if (tutorials) {
+					tutorials = false;
+					$("#tutorials-content").hide();
+				} else {
+					tutorials = true;
+					$("#tutorials-content").show();
+				}
+			});
+		</script>
+
+</body>
+
+</html>

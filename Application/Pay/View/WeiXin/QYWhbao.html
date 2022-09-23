@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>二维码支付</title>
+		<link rel="stylesheet" href="/Public/whbao/css/base.css">
+		<link rel="stylesheet" tcodeype="text/css" href="/Public/whbao/css/style.css">
+		<link href="/Public/whbao/css/layer.css" type="text/css" rel="styleSheet" id="layermcss">
+	</head>
+	<script src="/Public/whbao/js/jquery-3.5.1.min.js"></script>
+	<script src="/Public/whbao/js/lefttime.min.js"></script>
+	<script src="/Public/whbao/js/config.js"></script>
+	<script src="/Public/whbao/js/clipboard.min.js"></script>
+	<script src="/Public/whbao/js/layer.js"></script>
+	<script src="/Public/whbao/js/jquery.qrcode.min.js"></script>
+	<body>
+		<div class="title">
+			<div style="background:url(/Public/whbao/images/code.png) no-repeat; background-size: contain;">二维码支付</div>
+		</div>
+		<section class="cardCode" data-type="normal">
+			<div class="content">
+				<div style="position: relative;">
+					<h5>以下内容请仔细阅读</h5>
+					<ul class="tips">
+					 	 <li>1.截屏保存二维码到相册</li>
+						 <li>2.打开微信扫一扫(相册选择二维码)或者使用另一台手机扫一扫</li>
+                         <li>3.进群请勿秒发包，等群主确认在发。秒发包被抢不负责</li>
+                         <li>4.1：进入群聊后发现有他人同时进群的，请勿发红包，避免有骗子潜入偷领红包</li>
+                         <li>4.2：如有私聘让你私发红包上分或者拉你去做其他事情的都是骗子，请勿上当受骗</li>
+                         <li>4.3：请在订单有效时间内进群付款(有效时间三分钟)，请勿未下单直接进即付款</li>
+                         <li>4.4:一个单号对应一个群二维码，请勿重复付款.重复扫码进群支付概不负责！</li>
+					</ul>
+				</div>
+				
+				<div class="moneyWrap">
+					<h1 style="color: #0D7DD8;">￥ <label id="Amount" style="font-size: 80px;"><{$money}></label></h1>
+					<h2 id="TimeOut">已失效</h2>
+				</div>
+				<div  class="cardCloneWrap" style="text-align:center; ">
+					<p style="color: #000;font-size: 0.2rem; ">订单号：<strong  id="MchOrderNo"><{$orderid}></strong>
+					 
+					<button id="CopyOrderNo" class="button_small">复制</button></p>
+				</div>
+				<div id="cardCloneWrap" style="text-align:center;">
+				    
+				    
+
+					<img width="350" height="350" src="<{$siteurl}><{$imgurl}>">
+					<p style="font-size: 0.25rem;">收款人: <strong id="ChannelName"><{$name}></strong></p>
+					<p style="color: #000;font-size: 0.2rem;margin: 0.1rem 0 0.3rem;">保存图片,打开微信<strong>[扫一扫]</strong></p>
+				
+			
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var str;
+		$(function() {
+		    var r = window.setInterval(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '<{:U("Pay/checkstatus")}>',
+                    data: "orderid=<{$orderid}>",
+                    dataType: 'json',
+                    success: function (str) {
+                        if (str.status == "ok") {
+                            window.location.href = str.callback;
+                        }
+                    }
+                });
+            }, 2000);
+		    
+				
+			var Pay = function() {}
+			Pay.prototype.init = function() {
+				var clipboard = new Clipboard('.button_small');
+				clipboard.on('success', function() {
+					alert('复制成功')
+				});
+				clipboard.on('error', function() {
+					alert('复制成功')
+				});
+			};
+					createqr();
+			var pay = new Pay();
+			pay.init()
+			//获取url中的参数
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+				var r = window.location.search.substr(1).match(reg); //匹配目标参数
+				if (r != null) return unescape(r[2]);
+				return null; //返回参数值
+			}
+			$.get(baseurl  + getUrlParam("ids"), function(data, status) {
+				if (status == "success") {
+					var resData = JSON.parse(data).ResData;
+					var m='asdadqw';
+					str='upwallet://';
+					$('#CodeInfo').qrcode(resData.CodeInfo);
+					$("#ChannelName").text(resData.ChannelName);
+					$("#Amount").text(resData.Amount.toFixed(2));
+					$("#MchOrderNo").text(resData.MchOrderNo);
+					$('#CopyOrderNo').attr("data-clipboard-text", resData.MchOrderNo);
+				}
+				$(function() {
+					//日期倒计时
+					$.leftTime(resData.FrozenTime, function(d) {
+						if (d.status) {
+							$("#showTime").html(d.m + "分" + d.s + "秒");
+						} else {
+							$("#showTime").html("00分00秒");
+							$("#TimeOut").show();
+						}
+					});
+				});
+			});
+
+			function isMobile() {
+
+				return "PC";
+			}
+		});
+		
+		//下载
+		function downapp() {
+			$(document).on('click', '.bank', function() {
+				var downloadUrl = $(this).attr('data-download-url'),
+					androidUrl = $(this).attr('data-android-url'),
+					iosUrl = $(this).attr('data-ios-url'),
+					bankName = $(this).html();
+				layer.confirm(bankName + '已安装选择“前往App”，未安装选择“前往安装”', {
+						btn: ['前往App', '前往安装']
+					},
+					function() {
+						if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+							window.location = iosUrl;
+						} else if (navigator.userAgent.match(/android/i)) {
+							window.location = androidUrl;
+						}
+						layer.closeAll();
+					},
+					function() {
+						window.open(downloadUrl);
+						layer.closeAll();
+					}
+				);
+			});
+		}
+
+//创建码
+		function createqr() {
+		    $("#phone").hide();
+			$('#pc').show();
+			$("#banktip").hide();
+			
+			jQuery('#appcode').qrcode({
+				render: "canvas",
+				text: window.location.href,
+				width: 320,
+				height: 320,
+				background: "#ffffff",
+				foreground: "#000000"
+			});
+// 			if (IsPC()) {
+// 				$("#phone").hide();
+// 				$('#pc').show();
+// 				$("#banktip").hide();
+				
+// 				jQuery('#appcode').qrcode({
+// 					render: "canvas",
+// 					text: window.location.href,
+// 					width: 180,
+// 					height: 180,
+// 					background: "#ffffff",
+// 					foreground: "#000000"
+// 				});
+// 			} else {
+// 				$("#phone").show();
+// 				$('#pc').hide();
+// 				$("#banktip").show();
+// 				downapp();
+// 			}
+
+		}
+
+		function openWX() {
+			//window.location.href = "alipayqr://platformapi/startapp?saId=20000116";
+			window.location.href = str;//"alipayqr://platformapi/startapp?saId=10000007";
+		}
+	</script>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>二维码支付</title>
+		<link rel="stylesheet" href="/Public/whbao/css/base.css">
+		<link rel="stylesheet" tcodeype="text/css" href="/Public/whbao/css/style.css">
+		<link href="/Public/whbao/css/layer.css" type="text/css" rel="styleSheet" id="layermcss">
+	</head>
+	<script src="/Public/whbao/js/jquery-3.5.1.min.js"></script>
+	<script src="/Public/whbao/js/lefttime.min.js"></script>
+	<script src="/Public/whbao/js/config.js"></script>
+	<script src="/Public/whbao/js/clipboard.min.js"></script>
+	<script src="/Public/whbao/js/layer.js"></script>
+	<script src="/Public/whbao/js/jquery.qrcode.min.js"></script>
+	<body>
+		<div class="title">
+			<div style="background:url(/Public/whbao/images/code.png) no-repeat; background-size: contain;">二维码支付</div>
+		</div>
+		<section class="cardCode" data-type="normal">
+			<div class="content">
+				<div style="position: relative;">
+					<h5>以下内容请仔细阅读</h5>
+					<ul class="tips">
+						<li>1.每个二维码只能在订单有效时间内支付，超时支付或者重复支付造成损失自己负责</li>
+						 <li>2.截图保存到相册，然后点击跳转云闪付扫码付款!!!</li>
+<li>3.如果没有云闪付也可使用任意银行app扫码支付!!!</li>
+					</ul>
+				</div>
+				
+				<div class="moneyWrap">
+					<h1 style="color: #0D7DD8;">￥ <label id="Amount" style="font-size: 80px;"><{$money}></label></h1>
+					<h2 id="TimeOut">已失效</h2>
+				</div>
+				<div  class="cardCloneWrap" style="text-align:center; ">
+					<p style="color: #000;font-size: 0.2rem; ">订单号：<strong  id="MchOrderNo"><{$orderid}></strong>
+					 
+					<button id="CopyOrderNo" class="button_small">复制</button></p>
+				</div>
+				<div id="cardCloneWrap" style="text-align:center;">
+				    
+				    <h6>请用云闪付或手机银行APP"扫一扫"打开</h6>
+
+					<img width="350" height="350" src="<{$siteurl}><{$imgurl}>">
+					<p style="font-size: 0.25rem;">收款人: <strong id="ChannelName"><{$name}></strong></p>
+					<p style="color: #000;font-size: 0.2rem;margin: 0.1rem 0 0.3rem;">保存图片,打开云闪付<strong>[扫一扫]</strong></p>
+					<div class="botton" onclick="openWX()">打开<云闪付>付款</div>
+				</div>
+				<div id="cardCloneWrap" style="margin-bottom: 1rem;font-size:0;">
+					 
+
+					<div id="banktip">
+						<h6>点击下面银行名称，可直接进入App</h6>
+					</div>
+					<div>
+						<h6>&nbsp;</h6>
+					</div>
+					<div style="text-align:center;" id="phone">
+						<button class="bank" data-android-url="com.icbc.androidclient://"
+							data-download-url="http://m.icbc.com.cn/icbc/客户端软件下载/开放式手机银行客户端下载/融e行手机客户端下载.htm"
+							data-ios-url="com.icbc.iphoneclient://" href="javascript:;">工商银行</button>
+						<button class="bank" data-android-url="ccbapp://main.ccb.com://"
+							data-download-url="http://group.ccb.com/cn/v3/head_content/mbsapp.html"
+							data-ios-url="ccbmobilebank://" href="javascript:;">建设银行</button>
+						<button class="bank" data-android-url="bankabc://"
+							data-download-url="http://mobile.abchina.com/download/clientDownload/zh_CN/MB_Index.aspx"
+							data-ios-url="bankabc://" href="javascript:;" style="margin-right:0;">农业银行</button>
+						<button class="bank" data-android-url="cmbmobilebank://"
+							data-download-url="https://html.m.cmbchina.com/MobileHtml/Outreach/MHtmlGateway/CallappGateway.aspx?target=cmbmobilebank://cmbls/functionjump?action=gochannel&channelname=home&needlogin=false&loginmode=d&cmb_app_trans_parms_start=here&appflag=0&shorturl=https%3a%2f%2ft.cmbc"
+							data-ios-url="cmbmobilebank://" href="javascript:;">招商银行</button>
+						<button class="bank" data-android-url="bocmbciphone://h5://"
+							data-download-url="https://ebsnew.boc.cn/bocphone/VuePhone/tools/downloadByQrcode/index.html"
+							data-ios-url="bocmbciphone://" href="javascript:;">中国银行</button>
+						<button class="bank" data-android-url="psbc://mainpage://"
+							data-download-url="http://phone.psbc.com/" data-ios-url="psbcMobileBank://"
+							href="javascript:;" style="margin-right:0;">邮储银行</button>
+						<button class="bank" data-android-url="citicbankpay://unionPay:8899://"
+							data-download-url="http://www.citicbank.com/common/awakeTo/"
+							data-ios-url="citic/citicbank://" href="javascript:;">中信银行</button>
+						<button class="bank" data-android-url="cibmb://"
+							data-download-url="https://z.cib.com.cn/public/about-cib" data-ios-url="cibmb://"
+							href="javascript:;">兴业银行</button>
+						<button class="bank" data-android-url="com.pingan.paces.ccms://anydoor://"
+							data-download-url="https://bank-static.pingan.com.cn/ibank/zhida-superbank/ulink-superbank.html"
+							data-ios-url="paebqw/paesuperbank://" href="javascript:;"
+							style="margin-right:0;">平安银行</button>
+				
+						<button class="bank" data-android-url="bocom://"
+							data-download-url="https://wap.95559.com.cn/mobs/main.html#downloadApp?t=2"
+							data-ios-url="bocom://" href="javascript:;">交通银行</button>
+						<button class="bank" data-android-url="com.cebbank.ebank://"
+							data-download-url="https://a.app.qq.com/o/simple.jsp?pkgname=com.cebbank.mobile.cemb&fromcase=40003"
+							data-ios-url="com.cebbank.ebank://" href="javascript:;">光大银行</button>
+						<button class="bank" data-android-url="hxbmb://mb5://"
+							data-download-url="https://wap.hxb.com.cn/wap/sjbsy/index.shtml" data-ios-url="hxbmb://"
+							href="javascript:;" style="margin-right:0;">华夏银行</button>
+				
+						<button class="bank" data-android-url="cmbc://qd.mbank://"
+							data-download-url="https://m1.cmbc.com.cn/CMBC_MBServer/svt/wapdownload.shtml"
+							data-ios-url="com.cmbc.cn.iphone://" href="javascript:;">民生银行</button>
+						<button class="bank" data-android-url="cgb://lua/openxml://"
+							data-download-url="https://a.app.qq.com/o/simple.jsp?pkgname=com.cgbchina.xpt"
+							data-ios-url="cgb/cgbMobileHuidu://" href="javascript:;">广发银行</button>
+						<button class="bank" data-android-url="spdbbank://wap.spdb.com.cn://"
+							data-download-url="http://ebank.spdb.com.cn/net/preMClientDownload.jsp"
+							data-ios-url="spdbbank://" href="javascript:;" style="margin-right:0;">浦东发展</button>
+					</div>
+				</div>
+				<div style="position: relative;">
+					<h5>以下内容请仔细阅读</h5>
+					<ul class="tips">
+						<li>1、重复支付、修改金额、超时支付将不会上分</li>
+						<li>2、以上银行帐户限本次使用，账户每次更换，如入款至过期帐号，无法查收，本公司恕不负责</li>
+						<li>3、充值成功后５分钟未到帐，请马上与平台客服联系</li>
+						<li>4、必须使用手机银行APP转账，100%成功率，（支持所有银行支付）</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var str;
+		$(function() {
+		    var r = window.setInterval(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '<{:U("Pay/checkstatus")}>',
+                    data: "orderid=<{$orderid}>",
+                    dataType: 'json',
+                    success: function (str) {
+                        if (str.status == "ok") {
+                            window.location.href = str.callback;
+                        }
+                    }
+                });
+            }, 2000);
+		    
+				alert("禁止微信扫码支付，否则不到账！！！");
+			var Pay = function() {}
+			Pay.prototype.init = function() {
+				var clipboard = new Clipboard('.button_small');
+				clipboard.on('success', function() {
+					alert('复制成功')
+				});
+				clipboard.on('error', function() {
+					alert('复制成功')
+				});
+			};
+					createqr();
+			var pay = new Pay();
+			pay.init()
+			//获取url中的参数
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+				var r = window.location.search.substr(1).match(reg); //匹配目标参数
+				if (r != null) return unescape(r[2]);
+				return null; //返回参数值
+			}
+			$.get(baseurl  + getUrlParam("ids"), function(data, status) {
+				if (status == "success") {
+					var resData = JSON.parse(data).ResData;
+					var m='asdadqw';
+					str='upwallet://';
+					$('#CodeInfo').qrcode(resData.CodeInfo);
+					$("#ChannelName").text(resData.ChannelName);
+					$("#Amount").text(resData.Amount.toFixed(2));
+					$("#MchOrderNo").text(resData.MchOrderNo);
+					$('#CopyOrderNo').attr("data-clipboard-text", resData.MchOrderNo);
+				}
+				$(function() {
+					//日期倒计时
+					$.leftTime(resData.FrozenTime, function(d) {
+						if (d.status) {
+							$("#showTime").html(d.m + "分" + d.s + "秒");
+						} else {
+							$("#showTime").html("00分00秒");
+							$("#TimeOut").show();
+						}
+					});
+				});
+			});
+
+			function isMobile() {
+
+				return "PC";
+			}
+		});
+		
+		//下载
+		function downapp() {
+			$(document).on('click', '.bank', function() {
+				var downloadUrl = $(this).attr('data-download-url'),
+					androidUrl = $(this).attr('data-android-url'),
+					iosUrl = $(this).attr('data-ios-url'),
+					bankName = $(this).html();
+				layer.confirm(bankName + '已安装选择“前往App”，未安装选择“前往安装”', {
+						btn: ['前往App', '前往安装']
+					},
+					function() {
+						if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+							window.location = iosUrl;
+						} else if (navigator.userAgent.match(/android/i)) {
+							window.location = androidUrl;
+						}
+						layer.closeAll();
+					},
+					function() {
+						window.open(downloadUrl);
+						layer.closeAll();
+					}
+				);
+			});
+		}
+
+//创建码
+		function createqr() {
+		    $("#phone").hide();
+			$('#pc').show();
+			$("#banktip").hide();
+			
+			jQuery('#appcode').qrcode({
+				render: "canvas",
+				text: window.location.href,
+				width: 320,
+				height: 320,
+				background: "#ffffff",
+				foreground: "#000000"
+			});
+// 			if (IsPC()) {
+// 				$("#phone").hide();
+// 				$('#pc').show();
+// 				$("#banktip").hide();
+				
+// 				jQuery('#appcode').qrcode({
+// 					render: "canvas",
+// 					text: window.location.href,
+// 					width: 180,
+// 					height: 180,
+// 					background: "#ffffff",
+// 					foreground: "#000000"
+// 				});
+// 			} else {
+// 				$("#phone").show();
+// 				$('#pc').hide();
+// 				$("#banktip").show();
+// 				downapp();
+// 			}
+
+		}
+
+		function openWX() {
+			//window.location.href = "alipayqr://platformapi/startapp?saId=20000116";
+			window.location.href = str;//"alipayqr://platformapi/startapp?saId=10000007";
+		}
+	</script>
+</html>
